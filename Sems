@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <title>Şəms Məmmədli</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #fff;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+    }
+    .container {
+      display: flex;
+      flex: 1;
+    }
+    .sidebar {
+      width: 220px;
+      padding: 15px;
+      background: #eee;
+      box-sizing: border-box;
+    }
+    .main {
+      flex: 1;
+      padding: 40px 30px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .text {
+      max-width: 60%;
+    }
+    .main img {
+      max-width: 200px;
+      border-radius: 8px;
+      margin-left: 20px;
+      cursor: pointer;
+    }
+    footer {
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+    }
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header id="nameHeader"></header>
+
+  <div class="container">
+    <div class="sidebar" id="sidebar"></div>
+    <div class="main">
+      <div class="text" id="mainText"></div>
+      <img id="profileImage" alt="Şəms Məmmədli şəkli">
+    </div>
+  </div>
+
+  <footer id="footerEmail"></footer>
+
+  <script>
+    // Məlumatların saxlanması
+    const profile = {
+      name: "Şəms Məmmədli",
+      age: 17,
+      location: "Sabunçu rayonu ərazisində yaşayır",
+      education: "Azərbaycan Texniki Universitetində Kibertəhlükəsizlik üzrə təhsil alır.",
+      languages: {
+        ingilis: "B2",
+        rus: "A2",
+        ispan: "A2"
+      },
+      email: "slyr46303@gmail.com",
+      imageURL: "https://t.pimg.jp/097/055/883/5/97055883.jpg"
+    };
+
+    // HTML-i dinamik yarat
+    document.getElementById("nameHeader").innerText = profile.name;
+
+    const sidebar = document.getElementById("sidebar");
+    sidebar.innerHTML = `
+      <h3>Təhsil :</h3>
+      <p>${profile.education}</p>
+      <h3>Bildiyi dillər :</h3>
+      <p>
+        İngilis (${profile.languages.ingilis})<br>
+        Rus (${profile.languages.rus})<br>
+        İspan (${profile.languages.ispan})
+      </p>
+    `;
+
+    const mainText = document.getElementById("mainText");
+    mainText.innerHTML = `<p>${profile.name} ${profile.age} yaşındadır və tələbədir. ${profile.location}.</p>`;
+
+    const img = document.getElementById("profileImage");
+    img.src = profile.imageURL;
+
+    img.addEventListener("click", function() {
+      alert(`${profile.name} – ${profile.age} yaşında tələbədir.`);
+    });
+
+    const footer = document.getElementById("footerEmail");
+    footer.innerHTML = `Email: <a href="mailto:${profile.email}">${profile.email}</a>`;
+
+    // Redaktə etmək və yeni məlumat əlavə etmək üçün nümunə funksiyalar:
+    function updateAge(newAge) {
+      profile.age = newAge;
+      mainText.innerHTML = `<p>${profile.name} ${profile.age} yaşındadır və tələbədir. ${profile.location}.</p>`;
+    }
+
+    function addLanguage(language, level) {
+      profile.languages[language] = level;
+      let languagesHTML = "";
+      for (let lang in profile.languages) {
+        languagesHTML += `${lang.charAt(0).toUpperCase() + lang.slice(1)} (${profile.languages[lang]})<br>`;
+      }
+      sidebar.querySelector("p:nth-child(4)").innerHTML = languagesHTML;
+    }
+  </script>
+</body>
+</html>
