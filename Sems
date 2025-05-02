@@ -70,7 +70,6 @@
   <footer id="footerEmail"></footer>
 
   <script>
-    // Məlumatların saxlanması
     const profile = {
       name: "Şəms Məmmədli",
       age: 17,
@@ -84,8 +83,6 @@
       email: "slyr46303@gmail.com",
       imageURL: "https://t.pimg.jp/097/055/883/5/97055883.jpg"
     };
-
-    // HTML-i dinamik yarat
     document.getElementById("nameHeader").innerText = profile.name;
 
     const sidebar = document.getElementById("sidebar");
@@ -113,7 +110,6 @@
     const footer = document.getElementById("footerEmail");
     footer.innerHTML = `Email: <a href="mailto:${profile.email}">${profile.email}</a>`;
 
-    // Redaktə etmək və yeni məlumat əlavə etmək üçün nümunə funksiyalar:
     function updateAge(newAge) {
       profile.age = newAge;
       mainText.innerHTML = `<p>${profile.name} ${profile.age} yaşındadır və tələbədir. ${profile.location}.</p>`;
